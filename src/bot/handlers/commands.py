@@ -110,7 +110,7 @@ async def _users_info(
     :param context:
     :return:
     """
-    data = await cache.all_chat_str(update.effective_chat.id)
+    data = await cache.all_chat_str('*_{}'.format(update.effective_chat.id))
     if not data:
         text = 'No data about users in this chat'
     else:

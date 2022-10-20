@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes, CommandHandler, CallbackContext, Callback
 
 from src.bot.handlers.callbacks import _callback_reg_query
 from src.bot.handlers.commands import _reg, _users_info, _fullness_check, _test_try, _choose_sex, _help
+from src.bot.handlers.congratulations import _congrat, _callbacks_congratulations
 
 
 def get_handlers() -> list[CommandHandler[CallbackContext | Any]]:
@@ -15,5 +16,7 @@ def get_handlers() -> list[CommandHandler[CallbackContext | Any]]:
         CommandHandler('test', _test_try),
         CommandHandler('sex', _choose_sex),
         CommandHandler('help', _help),
+        CommandHandler('cong', _congrat),
+        CallbackQueryHandler(_callbacks_congratulations),
         CallbackQueryHandler(_callback_reg_query)
     ]

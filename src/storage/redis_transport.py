@@ -11,8 +11,7 @@ class RedisTransport(AbstractTransport):
     def __init__(self, url: str) -> None:
         self.redis = aioredis.from_url(url, encoding="utf-8", decode_responses=True)
 
-    async def keys(self, chat_id: int | None = None) -> list[str]:
-        pattern = "_{}".format(chat_id) if chat_id else "*"
+    async def keys(self, pattern: str = '*') -> list[str]:
         return await self.redis.keys(pattern=pattern)
 
     async def load(self, key: tuple[int, int] | str) -> User | None:
